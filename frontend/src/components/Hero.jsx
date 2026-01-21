@@ -64,35 +64,42 @@ const Hero = () => {
       <div className="max-w-[1400px] mx-auto px-[7.6923%] w-full relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Left Side - Content */}
-          <div className="space-y-8 pt-20 md:pt-0">
+          <div className="space-y-8 pt-20 md:pt-0 animate-fade-in">
             <div className="space-y-4">
               <h1
-                className="text-5xl md:text-[66px] font-semibold leading-[1.1] tracking-[-0.62px]"
+                className="text-5xl md:text-[66px] font-semibold leading-[1.1] tracking-[-0.62px] animate-slide-up"
                 style={{ color: '#FFFFFF' }}
               >
                 {companyInfo.tagline}
               </h1>
               <p
-                className="text-xl md:text-[20px] font-medium leading-[1.5]"
-                style={{ color: 'rgba(255, 255, 255, 0.85)' }}
+                className="text-xl md:text-[20px] font-medium leading-[1.5] animate-slide-up"
+                style={{ 
+                  color: 'rgba(255, 255, 255, 0.85)',
+                  animationDelay: '0.2s'
+                }}
               >
                 {companyInfo.subtitle}
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button onClick={scrollToProducts} className="btn-primary group">
-                Explore Products
-                <ArrowRight
-                  className="transition-transform duration-300 group-hover:translate-x-1"
-                  size={20}
-                />
+            <div className="flex flex-col sm:flex-row gap-4 animate-slide-up" style={{ animationDelay: '0.4s' }}>
+              <button onClick={scrollToProducts} className="btn-primary group relative overflow-hidden">
+                <span className="relative z-10 flex items-center justify-center gap-3">
+                  Explore Products
+                  <ArrowRight
+                    className="transition-transform duration-300 group-hover:translate-x-1"
+                    size={20}
+                  />
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#00FFD1] via-[#00FFD1] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </button>
               <button
                 onClick={() => document.getElementById('about').scrollIntoView({ behavior: 'smooth' })}
-                className="btn-secondary"
+                className="btn-secondary group relative overflow-hidden"
               >
-                Learn More
+                <span className="relative z-10">Learn More</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </button>
             </div>
           </div>
@@ -102,11 +109,17 @@ const Hero = () => {
             <Suspense
               fallback={
                 <div className="w-full h-full flex items-center justify-center">
-                  <div className="text-[#00FFD1] text-lg animate-pulse">Loading 3D Model...</div>
+                  <div className="relative">
+                    <div className="w-32 h-32 border-4 border-[#00FFD1] border-t-transparent rounded-full animate-spin" />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="text-[#00FFD1] text-sm font-medium">Loading 3D Model...</div>
+                    </div>
+                  </div>
                 </div>
               }
             >
               <div
+                className="spline-container"
                 style={{
                   width: '100%',
                   height: '100%',
@@ -114,6 +127,7 @@ const Hero = () => {
                   maxHeight: '700px',
                   overflow: 'visible',
                   position: 'relative',
+                  filter: 'drop-shadow(0 0 80px rgba(0, 255, 209, 0.3))',
                 }}
               >
                 <Spline scene="https://prod.spline.design/NbVmy6DPLhY-5Lvg/scene.splinecode" />

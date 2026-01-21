@@ -1,5 +1,29 @@
 /* IVAROBOTICS Premium Dark Theme Styles */
 
+/* Smooth Scroll Behavior */
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #00FFD1 #000000;
+}
+
+html::-webkit-scrollbar {
+  width: 8px;
+}
+
+html::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: #00FFD1;
+  border-radius: 0px;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: #6FD2C0;
+}
+
 /* Main App Container */
 .App {
   min-height: 100vh;
@@ -9,6 +33,74 @@
 .ivarobotics-container {
   width: 100%;
   overflow-x: hidden;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 255, 209, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(0, 255, 209, 0.6);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.8s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.8s ease-out forwards;
 }
 
 /* Primary Button - Sharp Edges with Brand Color */
@@ -21,7 +113,7 @@
   font-size: 18px;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.4s ease-in-out;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   min-height: 56px;
   text-decoration: none;
   display: inline-flex;
@@ -30,31 +122,47 @@
   gap: 12px;
   line-height: 1.2;
   letter-spacing: 0;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 255, 209, 0.2);
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s;
+}
+
+.btn-primary:hover::before {
+  transform: translateX(100%);
 }
 
 .btn-primary:hover {
-  background: rgba(0, 255, 209, 0.1);
-  color: #00FFD1;
-  transform: scale(1.02);
-  box-shadow: 0 0 20px rgba(0, 255, 209, 0.3);
+  background: #00FFD1;
+  color: #000000;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 0 30px rgba(0, 255, 209, 0.5), 0 8px 25px rgba(0, 255, 209, 0.3);
 }
 
 .btn-primary:active {
   background: #6FD2C0;
-  transform: scale(0.98);
+  transform: translateY(0) scale(0.98);
 }
 
 /* Secondary Button - Sharp Edges with Transparent Background */
 .btn-secondary {
   background: rgba(255, 255, 255, 0.1);
   color: #FFFFFF;
-  border: none;
+  border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 0px;
   padding: 14px 24px;
   font-size: 18px;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.4s ease-in-out;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   min-height: 56px;
   text-decoration: none;
   display: inline-flex;
@@ -63,21 +171,31 @@
   gap: 12px;
   line-height: 1.2;
   letter-spacing: 0;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
 }
 
 .btn-secondary:hover {
-  background: #FFFFFF;
-  color: #000000;
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(0, 255, 209, 0.6);
+  color: #00FFD1;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 255, 209, 0.2);
 }
 
 .btn-secondary:active {
-  background: #F0F0F0;
-  transform: scale(0.98);
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(0) scale(0.98);
 }
 
-/* Smooth Scroll Behavior */
-html {
-  scroll-behavior: smooth;
+/* Glass effect enhancement */
+.glass-effect {
+  background: rgba(13, 36, 64, 0.4);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 2px solid rgba(0, 255, 209, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
 /* Loading Animation */
@@ -90,8 +208,26 @@ html {
   }
 }
 
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .animate-pulse {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Spline container glow */
+.spline-container {
+  animation: glow 3s ease-in-out infinite;
 }
 
 /* Responsive Typography Adjustments */

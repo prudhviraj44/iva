@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { companyInfo } from '../data/mock';
 
@@ -6,6 +6,19 @@ import { companyInfo } from '../data/mock';
 const Spline = React.lazy(() => import('@splinetool/react-spline'));
 
 const Hero = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePosition({
+        x: (e.clientX / window.innerWidth - 0.5) * 20,
+        y: (e.clientY / window.innerHeight - 0.5) * 20,
+      });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
   const scrollToProducts = () => {
     const element = document.getElementById('products');
     if (element) {
@@ -20,21 +33,32 @@ const Hero = () => {
         background: 'linear-gradient(180deg, #0D2440 0%, #000000 100%)',
       }}
     >
-      {/* Subtle grid overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.14] pointer-events-none"
-        style={{
-          backgroundImage:
-            'repeating-linear-gradient(0deg, transparent, transparent 1px, transparent 1px, transparent 7.6923%), repeating-linear-gradient(-90deg, #fff, #fff 1px, transparent 1px, transparent 7.6923%)',
-          backgroundSize: '100% 100%',
-        }}
-      />
+      {/* Animated gradient orbs */}
+      <div className="absolute inset-0 opacity-30 pointer-events-none overflow-hidden">
+        <div
+          className="absolute top-0 left-0 w-[500px] h-[500px] rounded-full blur-[120px]"
+          style={{
+            background: 'radial-gradient(circle, rgba(0,255,209,0.3) 0%, transparent 70%)',
+            transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
+            transition: 'transform 0.3s ease-out',
+          }}
+        />
+        <div
+          className="absolute bottom-0 right-0 w-[600px] h-[600px] rounded-full blur-[150px]"
+          style={{
+            background: 'radial-gradient(circle, rgba(46,94,153,0.4) 0%, transparent 70%)',
+            transform: `translate(${-mousePosition.x}px, ${-mousePosition.y}px)`,
+            transition: 'transform 0.3s ease-out',
+          }}
+        />
+      </div>
 
-      {/* Particle effect overlay */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-[#00FFD1] rounded-full animate-pulse" />
-        <div className="absolute top-1/3 right-1/3 w-1 h-1 bg-[#2E5E99] rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
-        <div className="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-[#7BA4D0] rounded-full animate-pulse" style={{ animationDelay: '2s' }} />
+      {/* Floating particles */}
+      <div className="absolute inset-0 opacity-40 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-[#00FFD1] rounded-full animate-pulse shadow-[0_0_20px_rgba(0,255,209,0.8)]" />
+        <div className="absolute top-1/3 right-1/3 w-1 h-1 bg-[#2E5E99] rounded-full animate-pulse shadow-[0_0_15px_rgba(46,94,153,0.8)]" style={{ animationDelay: '1s' }} />
+        <div className="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-[#7BA4D0] rounded-full animate-pulse shadow-[0_0_18px_rgba(123,164,208,0.8)]" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-1/2 left-1/2 w-1 h-1 bg-[#00FFD1] rounded-full animate-pulse shadow-[0_0_12px_rgba(0,255,209,0.8)]" style={{ animationDelay: '1.5s' }} />
       </div>
 
       <div className="max-w-[1400px] mx-auto px-[7.6923%] w-full relative z-10">

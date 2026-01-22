@@ -34,7 +34,7 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${isScrolled ? 'backdrop-blur-xl bg-black/80' : 'bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-400 ${isScrolled ? 'backdrop-blur-xl bg-black/80' : 'bg-transparent'
         }`}
       style={{
         borderBottom: isScrolled ? '1px solid rgba(255, 255, 255, 0.25)' : 'none',
@@ -129,7 +129,7 @@ const Header = () => {
               </button>
               <button
                 onClick={() => navigate('/signup')}
-                className="text-[16px] font-semibold transition-all duration-300 px-6 py-2 rounded-lg"
+                className="text-[16px] font-semibold transition-transform duration-300 px-6 py-2 rounded-lg"
                 style={{ backgroundColor: '#00FFD1', color: '#000000' }}
                 onMouseEnter={(e) => {
                   e.target.style.backgroundColor = '#00e5bc';

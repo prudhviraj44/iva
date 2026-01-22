@@ -33,8 +33,20 @@ const Hero = () => {
         background: 'linear-gradient(180deg, #0D2440 0%, #000000 100%)',
       }}
     >
+      {/* Background Video */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        style={{ opacity: 0.4 }}
+      >
+        <source src="/videos/bghero1.mp4" type="video/mp4" />
+      </video>
+
       {/* Animated gradient orbs */}
-      <div className="absolute inset-0 opacity-30 pointer-events-none overflow-hidden">
+      <div className="absolute inset-0 opacity-30 pointer-events-none overflow-hidden z-1">
         <div
           className="absolute top-0 left-0 w-[500px] h-[500px] rounded-full blur-[120px]"
           style={{
@@ -74,7 +86,7 @@ const Hero = () => {
               </h1>
               <p
                 className="text-xl md:text-[20px] font-medium leading-[1.5] animate-slide-up"
-                style={{ 
+                style={{
                   color: 'rgba(255, 255, 255, 0.85)',
                   animationDelay: '0.2s'
                 }}
@@ -127,7 +139,6 @@ const Hero = () => {
                   maxHeight: '700px',
                   overflow: 'visible',
                   position: 'relative',
-                  filter: 'drop-shadow(0 0 80px rgba(0, 255, 209, 0.3))',
                 }}
               >
                 <Spline scene="https://prod.spline.design/NbVmy6DPLhY-5Lvg/scene.splinecode" />

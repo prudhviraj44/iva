@@ -6,7 +6,7 @@ export const products = [
     name: "Smart Baby Rover",
     tagline: "Intelligent Child Safety Companion",
     description: "A real-time monitoring rover engineered to enhance child safety. Equipped with auto-tracking, live video, scheduled photography, and music playback, the Smart Baby Rover seamlessly integrates into modern homes.",
-    image: "https://images.unsplash.com/photo-1727600511763-4ba7902e152a",
+    image: "/smart-baby-rover.png",
     category: "home",
     features: [
       "Auto-tracking technology",
@@ -22,7 +22,7 @@ export const products = [
     name: "AI Rover Assistant",
     tagline: "Autonomous Personal Companion",
     description: "A fully autonomous personal assistant rover built for education, research, and companion robotics. Supports voice commands, environmental mapping, follow-me navigation, memory storage, and expressive feedback.",
-    image: "https://images.unsplash.com/photo-1727600511593-5e0d41b61151",
+    image: "/ai-rover-assistant.png",
     category: "professional",
     features: [
       "Voice command support",
@@ -81,6 +81,8 @@ export const companyInfo = {
   about: "IVAROBOTICS develops high-performance autonomous rover systems engineered for intelligent navigation, real-time decision making, and seamless human–machine interaction. Our platforms combine advanced AI perception, industrial-grade hardware, and premium user-focused design.",
   contact: {
     email: "contact@ivarobotics.com",
+    phone: "+1 (555) 123-4567",
+    address: "123 Innovation Drive, Tech Valley, CA 94043",
     social: {
       twitter: "#",
       linkedin: "#",

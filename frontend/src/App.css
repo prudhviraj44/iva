@@ -40,6 +40,7 @@ html::-webkit-scrollbar-thumb:hover {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -50,6 +51,7 @@ html::-webkit-scrollbar-thumb:hover {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -61,6 +63,7 @@ html::-webkit-scrollbar-thumb:hover {
     opacity: 0;
     transform: translateX(-50px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -72,6 +75,7 @@ html::-webkit-scrollbar-thumb:hover {
     opacity: 0;
     transform: translateX(50px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -79,9 +83,12 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 @keyframes glow {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 20px rgba(0, 255, 209, 0.3);
   }
+
   50% {
     box-shadow: 0 0 40px rgba(0, 255, 209, 0.6);
   }
@@ -103,90 +110,33 @@ html::-webkit-scrollbar-thumb:hover {
   animation: slideInRight 0.8s ease-out forwards;
 }
 
-/* Primary Button - Sharp Edges with Brand Color */
-.btn-primary {
-  background: #00FFD1;
-  color: #000000;
+/* Universal Button Styles - From Uiverse.io by cssbuttons-io */
+/* Exclude nav buttons to preserve navbar styling */
+button:not(nav button):not(header button) {
+  padding: 1.3em 3em;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
   border: none;
-  border-radius: 0px;
-  padding: 14px 24px;
-  font-size: 18px;
-  font-weight: 500;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  min-height: 56px;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  line-height: 1.2;
-  letter-spacing: 0;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 255, 209, 0.2);
+  outline: none;
 }
 
-.btn-primary::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transform: translateX(-100%);
-  transition: transform 0.6s;
+button:not(nav button):not(header button):hover {
+  background-color: #23c483;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
 }
 
-.btn-primary:hover::before {
-  transform: translateX(100%);
-}
-
-.btn-primary:hover {
-  background: #00FFD1;
-  color: #000000;
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 0 30px rgba(0, 255, 209, 0.5), 0 8px 25px rgba(0, 255, 209, 0.3);
-}
-
-.btn-primary:active {
-  background: #6FD2C0;
-  transform: translateY(0) scale(0.98);
-}
-
-/* Secondary Button - Sharp Edges with Transparent Background */
-.btn-secondary {
-  background: rgba(255, 255, 255, 0.1);
-  color: #FFFFFF;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 0px;
-  padding: 14px 24px;
-  font-size: 18px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  min-height: 56px;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  line-height: 1.2;
-  letter-spacing: 0;
-  position: relative;
-  overflow: hidden;
-  backdrop-filter: blur(10px);
-}
-
-.btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(0, 255, 209, 0.6);
-  color: #00FFD1;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 255, 209, 0.2);
-}
-
-.btn-secondary:active {
-  background: rgba(255, 255, 255, 0.15);
-  transform: translateY(0) scale(0.98);
+button:not(nav button):not(header button):active {
+  transform: translateY(-1px);
 }
 
 /* Glass effect enhancement */
@@ -198,11 +148,84 @@ html::-webkit-scrollbar-thumb:hover {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
+/* Product card 3D floating animation */
+@keyframes productFloat {
+  0% {
+    transform: rotateX(-15deg) translateY(0px);
+  }
+
+  50% {
+    transform: rotateX(-15deg) translateY(-10px);
+  }
+
+  100% {
+    transform: rotateX(-15deg) translateY(0px);
+  }
+}
+
+.product-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 255, 209, 0.2);
+  background: rgb(15, 15, 15);
+  transform-style: preserve-3d;
+  animation: productFloat 2s infinite ease;
+  box-shadow: 0 0 50px 0px rgba(0, 255, 209, 0.2), inset 0 0 90px 0px rgba(0, 255, 209, 0.05);
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  opacity: 0;
+  transition-delay: var(--scroll-delay, 0ms);
+}
+
+.product-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+}
+
+.product-card::before {
+  content: "";
+  position: absolute;
+  top: -60%;
+  left: -30%;
+  width: 160%;
+  height: 120%;
+  background: radial-gradient(circle at center,
+      rgba(0, 255, 209, 0.25),
+      rgba(0, 255, 209, 0) 60%);
+  opacity: 0;
+  transform: translate3d(0, 40px, 0) scale(0.95);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  pointer-events: none;
+}
+
+.product-card:hover {
+  box-shadow: 0 0 50px 0px rgba(0, 255, 209, 0.4), inset 5px 5px 20px 0px black;
+  border-color: rgba(0, 255, 209, 0.55);
+}
+
+.product-card:hover::before {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.product-card.is-visible {
+  opacity: 1;
+}
+
 /* Loading Animation */
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.5;
   }
@@ -212,6 +235,7 @@ html::-webkit-scrollbar-thumb:hover {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -225,17 +249,11 @@ html::-webkit-scrollbar-thumb:hover {
   animation: spin 1s linear infinite;
 }
 
-/* Spline container glow */
-.spline-container {
-  animation: glow 3s ease-in-out infinite;
-}
 
 /* Responsive Typography Adjustments */
 @media (max-width: 768px) {
-  .btn-primary,
-  .btn-secondary {
-    min-height: 48px;
-    padding: 12px 20px;
-    font-size: 16px;
+  button {
+    padding: 1em 2em;
+    font-size: 11px;
   }
 }

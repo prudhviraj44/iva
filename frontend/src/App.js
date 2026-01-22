@@ -1,12 +1,16 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Products from "./components/Products";
 import Technology from "./components/Technology";
+import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
 
 const Home = () => {
   return (
@@ -16,6 +20,7 @@ const Home = () => {
       <About />
       <Products />
       <Technology />
+      <Contact />
       <Footer />
     </div>
   );
@@ -25,9 +30,13 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-        </Routes>
+        <AuthProvider>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+          </Routes>
+        </AuthProvider>
       </BrowserRouter>
     </div>
   );
